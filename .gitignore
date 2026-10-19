@@ -1,0 +1,8 @@
+node_modules/
+runs/
+.env
+.env.*
+*.log
+.DS_Store
+!.env.example
+internal_docs/

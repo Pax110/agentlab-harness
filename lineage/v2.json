@@ -1,0 +1,56 @@
+{
+  "name": "v2",
+  "parent": "v1",
+  "decision": "discarded",
+  "date": "2026-10-19T03:14:23.629Z",
+  "change": {
+    "field": "systemPrompt",
+    "from": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.",
+    "to": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.\n\nBefore making changes, thoroughly understand the full requirements and edge cases. When visible tests pass but the grader fails, consider:\n- Negative numbers, zero, empty inputs, and boundary conditions\n- Whether the function should mutate or preserve the original array/input\n- Whether output order or immutability matters\n\nRun tests after each fix and verify the logic handles all cases mentioned in comments or documentation."
+  },
+  "reason": "The failures reveal two critical patterns: (1) The agent misses edge cases like negative numbers in money formatting and (2) The agent modifies input arrays in-place (sort mutates the original), violating immutability requirements. The prompt now emphasizes reading full requirements, considering edge cases (negatives, boundaries, mutations), and running tests after fixes.",
+  "prediction": {
+    "trainPasses": 15,
+    "heldoutChange": 2,
+    "costChange": "+5%"
+  },
+  "scores": {
+    "v1": {
+      "train": {
+        "passes": 11,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 9,
+        "total": 12
+      },
+      "avgCost": 0.013191600000000001
+    },
+    "v2": {
+      "train": {
+        "passes": 12,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 9,
+        "total": 12
+      },
+      "avgCost": 0.014495800000000003
+    }
+  },
+  "checks": [
+    {
+      "ok": false,
+      "text": "held-out +0 (9 → 9 of 12; needs ≥ +1)"
+    },
+    {
+      "ok": true,
+      "text": "train 11 → 12 of 18 (must not drop)"
+    },
+    {
+      "ok": true,
+      "text": "cost 1.10× per attempt (max 1.5×)"
+    }
+  ],
+  "run": "runs/evolve-1792378951569"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "agentlab-harness",
+  "private": true,
+  "description": "A hands-on build of an LLM agent harness (tools, loop, verification, traces) and a self-improving harness loop, with a validated bug-fixing task suite.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pax110/agentlab-harness.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.133.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "validate": "tsx cli/validate.ts",
+    "check-offline": "tsx cli/check-offline.ts",
+    "evidence": "tsx cli/evidence.ts",
+    "agent": "tsx --env-file=.env.local cli/agent.ts",
+    "run-tasks": "tsx --env-file=.env.local cli/run.ts",
+    "propose": "tsx --env-file=.env.local cli/propose.ts",
+    "evolve": "tsx --env-file=.env.local cli/evolve.ts",
+    "baselines": "tsx --env-file=.env.local cli/baselines.ts",
+    "hello": "tsx --env-file=.env.local examples/hello.ts"
+  }
+}

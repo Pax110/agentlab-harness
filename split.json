@@ -1,0 +1,4 @@
+{
+  "train": ["01-sum", "03-money-format", "04-textutils", "05-chunk", "07-median", "09-retry"],
+  "heldout": ["02-slugify", "06-csv", "08-memoize", "10-inventory", "11-duration", "12-top-words", "13-account", "14-query-string"]
+}

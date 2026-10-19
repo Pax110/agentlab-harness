@@ -1,0 +1,9 @@
+{
+  "name": "v3",
+  "parent": "v1",
+  "decision": "manual",
+  "date": "2026-10-19",
+  "change": { "field": "offerListFiles", "from": false, "to": true },
+  "reason": "Made by hand (a Phase 3 change Phase 4 cannot make: it can only edit the system prompt). In the first evolve round (runs/evolve-1792378951569) the agent spent most turns on task 03 guessing file names (package.json, index.js, test.js, ...) because no tool showed which files exist. v3 adds a list_files tool; everything else is v1.",
+  "scores": null
+}

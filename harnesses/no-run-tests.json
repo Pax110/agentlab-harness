@@ -1,0 +1,13 @@
+{
+  "name": "no-run-tests",
+  "systemPrompt": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.",
+  "toolDescriptions": {
+    "list_files": "List every file in the project, with paths relative to the project root. Use it first to see which files exist.",
+    "read_file": "Read a text file from the project and return its contents.",
+    "write_file": "Create or overwrite a text file in the project with the given content.",
+    "run_tests": "Run the project's tests (node --test) and return the output. Use it to check your changes."
+  },
+  "offerListFiles": false,
+  "offerRunTests": false,
+  "maxTurns": 10
+}

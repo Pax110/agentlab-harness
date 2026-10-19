@@ -1,0 +1,53 @@
+{
+  "name": "v8",
+  "parent": "v3",
+  "proposer": "random",
+  "decision": "kept",
+  "date": "2026-10-19T10:12:44.117Z",
+  "change": {
+    "field": "systemPrompt",
+    "from": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.",
+    "to": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.\nRun the tests after every edit."
+  },
+  "reason": "Random baseline: one generic tip, picked at random: \"Run the tests after every edit.\"",
+  "prediction": null,
+  "scores": {
+    "v3": {
+      "train": {
+        "passes": 10,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 9,
+        "total": 24
+      },
+      "avgCost": 0.014237809523809531
+    },
+    "v8": {
+      "train": {
+        "passes": 11,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 10,
+        "total": 24
+      },
+      "avgCost": 0.01431745238095238
+    }
+  },
+  "checks": [
+    {
+      "ok": true,
+      "text": "held-out +1 (9 → 10 of 24; needs ≥ +1)"
+    },
+    {
+      "ok": true,
+      "text": "train 10 → 11 of 18 (must not drop)"
+    },
+    {
+      "ok": true,
+      "text": "cost 1.01× per attempt (max 1.5×)"
+    }
+  ],
+  "run": "runs/evolve-1792403874913"
+}

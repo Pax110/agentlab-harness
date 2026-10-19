@@ -1,0 +1,57 @@
+{
+  "name": "v5",
+  "parent": "v3",
+  "proposer": "claude",
+  "decision": "kept",
+  "date": "2026-10-19T06:05:02.365Z",
+  "change": {
+    "field": "systemPrompt",
+    "from": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.",
+    "to": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.\n\nCarefully analyze all test cases, including edge cases (negative numbers, empty inputs, boundary values). After fixing, verify your solution handles:\n- Negative values and sign placement (especially for formatting)\n- Mutation of input arrays (avoid modifying the original array)\n- Loop termination conditions and infinite loops\n- All edge cases the hidden grader might test\n\nAlways run tests after changes. If visible tests pass but the fix seems incomplete, investigate further."
+  },
+  "reason": "The failures reveal three distinct patterns: (1) formatCents doesn't handle negative values correctly (should format as -$1.50 not $-1.50), (2) chunk modified the loop incorrectly causing an infinite loop, (3) median sorted the original array in-place, violating the \"does not modify input\" contract. The new prompt explicitly warns against these patterns: handling negative edge cases properly, avoiding input mutations, and checking loop termination. This addresses the root cause that the agent fixed visible test cases but missed edge cases the hidden grader tests.",
+  "prediction": {
+    "trainPasses": 14,
+    "heldoutChange": 2,
+    "costChange": "+5%"
+  },
+  "scores": {
+    "v3": {
+      "train": {
+        "passes": 10,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 9,
+        "total": 24
+      },
+      "avgCost": 0.014237809523809531
+    },
+    "v5": {
+      "train": {
+        "passes": 13,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 12,
+        "total": 24
+      },
+      "avgCost": 0.015403547619047617
+    }
+  },
+  "checks": [
+    {
+      "ok": true,
+      "text": "held-out +3 (9 → 12 of 24; needs ≥ +1)"
+    },
+    {
+      "ok": true,
+      "text": "train 10 → 13 of 18 (must not drop)"
+    },
+    {
+      "ok": true,
+      "text": "cost 1.08× per attempt (max 1.5×)"
+    }
+  ],
+  "run": "runs/evolve-1792389355045"
+}

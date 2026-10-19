@@ -1,0 +1,57 @@
+{
+  "name": "v6",
+  "parent": "v5",
+  "proposer": "claude",
+  "decision": "discarded",
+  "date": "2026-10-19T09:57:54.225Z",
+  "change": {
+    "field": "systemPrompt",
+    "from": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.\n\nCarefully analyze all test cases, including edge cases (negative numbers, empty inputs, boundary values). After fixing, verify your solution handles:\n- Negative values and sign placement (especially for formatting)\n- Mutation of input arrays (avoid modifying the original array)\n- Loop termination conditions and infinite loops\n- All edge cases the hidden grader might test\n\nAlways run tests after changes. If visible tests pass but the fix seems incomplete, investigate further.",
+    "to": "You are fixing code in a small project. Use the tools to read and edit files. Paths are relative to the project root.\n\nAnalyze all test cases carefully, including edge cases. After fixing, verify your solution handles:\n- Negative values: test with negative inputs and check sign placement in output format\n- Empty inputs and boundary conditions\n- Array mutations: avoid modifying the original array\n- Loop conditions: ensure loops terminate correctly (no infinite loops when size doesn't divide evenly)\n- Off-by-one errors in loop bounds\n\nAlways run tests after changes. If visible tests pass but the fix seems incomplete, check for hidden edge cases the visible tests don't cover."
+  },
+  "reason": "The failures reveal two key issues: (1) Money formatting doesn't handle negative values correctly - the fix padded the rest but didn't handle when dollars is negative (e.g., -150 cents should be \"-$1.50\" not \"$-2.-50\"), requiring special sign handling. (2) The chunk loop fix caused an infinite loop on arrays with size 0 or non-positive size - the loop condition `i < items.length` without proper size validation creates infinite loops. The new prompt explicitly asks to test negative values and verify loop termination, addressing these blind spots.",
+  "prediction": {
+    "trainPasses": 16,
+    "heldoutChange": 2,
+    "costChange": "+5%"
+  },
+  "scores": {
+    "v5": {
+      "train": {
+        "passes": 13,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 12,
+        "total": 24
+      },
+      "avgCost": 0.015403547619047617
+    },
+    "v6": {
+      "train": {
+        "passes": 15,
+        "total": 18
+      },
+      "heldout": {
+        "passes": 11,
+        "total": 24
+      },
+      "avgCost": 0.015298285714285719
+    }
+  },
+  "checks": [
+    {
+      "ok": false,
+      "text": "held-out -1 (12 → 11 of 24; needs ≥ +1)"
+    },
+    {
+      "ok": true,
+      "text": "train 13 → 15 of 18 (must not drop)"
+    },
+    {
+      "ok": true,
+      "text": "cost 0.99× per attempt (max 1.5×)"
+    }
+  ],
+  "run": "runs/evolve-1792389355045"
+}
